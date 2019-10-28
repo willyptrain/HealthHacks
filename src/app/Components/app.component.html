@@ -1,0 +1,7 @@
+
+<div class="contact-side-list">
+  <app-contacts [inEdit]="inEdit" [currentContact]="currentContact" (select)="updateContactView($event)" (delete)="deleteContact($event)" [contactList]="contacts"></app-contacts>
+</div>
+<div class="contact-view">
+  <app-contact-view [contactList]="nonCategoryContacts" (edit)="inEdit=$event" [currentContact]="currentContact" (addContact)="addContact($event)" [selectedContact]="currentContact"></app-contact-view>
+</div>

@@ -1,0 +1,5 @@
+[
+  {"firstName": "Steve", "lastName": "Jobs", "phone": "111-222-1234", "email": "1234steve@gmail.com", "notes": ""},
+  {"firstName": "Bon", "lastName": "Apple", "phone": "111-222-1234", "email": "1234bon@gmail.com", "notes": ""},
+  {"firstName": "Jimmy", "lastName": "Hendrix", "phone": "111-333-1234", "email": "1234jimbo@gmail.com", "notes": ""}
+]

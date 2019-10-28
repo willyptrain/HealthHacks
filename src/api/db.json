@@ -1,0 +1,6 @@
+{
+  "contacts": [
+    {"id": "1","firstName": "Steve", "lastName": "Jobs", "phone": "111-222-1234", "email": "1234steve@gmail.com", "notes": ""},
+    {"id":"2","firstName": "Bon", "lastName": "Apple", "phone": "111-222-1234", "email": "1234bon@gmail.com", "notes": ""}
+  ]
+}

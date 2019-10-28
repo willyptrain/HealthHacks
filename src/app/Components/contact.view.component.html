@@ -1,0 +1,107 @@
+<div class="view-page">
+  <div class="fullName-container" *ngIf="!inEdit && !inCreate">
+    <div class="firstName-container">
+      <h1 class="firstName">{{selectedContact.firstName}}</h1>
+      <p class="firstName-tag">first name</p>
+    </div>
+    <div class="lastName-container">
+      <h1 class="lastName">{{selectedContact.lastName}}</h1>
+      <p class="lastName-tag">last name</p>
+    </div>
+  </div>
+  <div *ngIf="!inEdit && !inCreate" contact-container>
+    <div class="field-container phone">
+      <p class="phone-tag">phone</p>
+      <p class="phone-number">{{selectedContact.phone}}</p>
+      <hr class="phone-horizontal">
+    </div>
+    <div class="field-container email">
+      <p class="email-tag">email</p>
+      <p class="email-info">{{selectedContact.email}}</p>
+      <hr class="email-horizontal">
+    </div>
+    <div class="field-container address">
+      <p class="address-tag">address</p>
+      <p class="address-info">{{selectedContact.address}}</p>
+      <hr class="address-horizontal">
+    </div>
+
+    <div class="field-container note">
+      <p class="note-tag">note</p>
+      <p class="note-info">{{selectedContact.note}}</p>
+    </div>
+  </div>
+
+  <div class="edit-container" *ngIf="inEdit && !inCreate">
+    <div class="fullName-container">
+      <div class="firstName-container">
+        <input [(ngModel)]="firstName" class="firstName-input" placeholder="{{selectedContact.firstName}}"/>
+        <p class="firstName-tag">first name</p>
+      </div>
+      <div class="lastName-container">
+        <input [(ngModel)]="lastName" class="lastName-input" placeholder="{{selectedContact.lastName}}"/>
+        <p class="lastName-input-tag">last name</p>
+      </div>
+    </div>
+
+    <div class="field-container phone">
+      <p class="phone-tag">phone</p>
+      <input [(ngModel)]="phone" class="phone-info" placeholder="000-111-2222" />
+      <hr class="phone-horizontal">
+    </div>
+    <div class="field-container email">
+      <p class="email-tag">email</p>
+      <input [(ngModel)]="email" class="email-info" placeholder="123will@gmail.com">
+      <hr class="email-horizontal">
+    </div>
+    <div class="field-container address">
+      <p class="address-tag">address</p>
+      <textarea [(ngModel)]="address" class="address-info" name="address" placeholder="99 Forty-Two Way San Fran, CA 201888 United States" wrap="soft"></textarea>
+      <hr class="address-horizontal">
+    </div>
+    <div class="field-container note">
+      <p class="note-tag">note</p>
+      <input [(ngModel)]="notes" class="note-info" placeholder="Info" />
+    </div>
+    <button class="done-button" (click)="updateContact()">Done</button>
+  </div>
+
+  <div class="edit-container" *ngIf="inCreate && !inEdit">
+    <div class="fullName-container">
+      <div class="firstName-container">
+        <input [(ngModel)]="firstName" class="firstName-input" placeholder="{{selectedContact.firstName}}"/>
+        <p class="firstName-tag">first name</p>
+      </div>
+      <div class="lastName-container">
+        <input [(ngModel)]="lastName" class="lastName-input" placeholder="{{selectedContact.lastName}}"/>
+        <p class="lastName-input-tag">last name</p>
+      </div>
+    </div>
+
+    <div class="field-container phone">
+      <p class="phone-tag">phone</p>
+      <input [(ngModel)]="phone" class="phone-info" placeholder="000-111-2222" />
+      <hr class="phone-horizontal">
+    </div>
+    <div class="field-container email">
+      <p class="email-tag">email</p>
+      <input [(ngModel)]="email" class="email-info" placeholder="123will@gmail.com">
+      <hr class="email-horizontal">
+    </div>
+    <div class="field-container address">
+      <p class="address-tag">address</p>
+      <textarea [(ngModel)]="address" class="address-info" name="address" placeholder="99 Forty-Two Way San Fran, CA 201888 United States" id="taid" wrap="soft"></textarea>
+      <hr class="address-horizontal">
+    </div>
+    <div class="field-container note">
+      <p class="note-tag">note</p>
+      <input [(ngModel)]="notes" class="note-info" placeholder="Info" />
+    </div>
+    <button class="done-button" (click)="uploadContact()">Done</button>
+  </div>
+
+
+  <button class="add-contact" (click)="createContact()" align="center">+</button>
+  <button class="edit-button" *ngIf="!inEdit && !inCreate" (click)="toggleEditPage()">Edit</button>
+
+</div>

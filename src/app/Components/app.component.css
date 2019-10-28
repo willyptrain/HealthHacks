@@ -1,0 +1,189 @@
+
+.contact-side-list {
+  background: rgb(225,226,228);
+  height: 100%;
+  position: absolute;
+  width: 25%;
+  top: 0px;
+  left: 0px;
+}
+.contact-names {
+  font-size: 1em !important;
+  font-weight: normal !important;
+  left: 10px;
+  /* position: absolute; */
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.view-page {
+  position: absolute;
+  top: 0%;
+  left: 25%;
+  background: white;
+  height: 100%;
+  width: 75%;
+}
+.fullName-container {
+  display: flex;
+  font-size: 1.3em;
+}
+.firstName-container {
+  top: 50px;
+  position: absolute;
+  left: 85px;
+  margin: 0px;
+}
+.firstName {
+  margin-bottom: 0px;
+}
+.firstName-tag {
+  margin-top: 0px;
+}
+.lastName {
+  margin-bottom: 0px;
+}
+.lastName-tag {
+  margin-top: 0px;
+}
+.lastName-container {
+  top: 50px;
+  position: absolute;
+  left: 225px;
+  margin: 0px;
+}
+.field-container {
+  display: flex;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+.phone {
+  position: absolute;
+  top: 200px;
+}
+.email {
+  position: absolute;
+  top: 250px;
+}
+.address {
+  position: absolute;
+  top: 300px;
+}
+.note {
+  position: absolute;
+  top: 350px;
+  margin-top: 25px;
+  bottom: 200px;
+}
+.edit-button {
+  position: absolute;
+  top: 94%;
+  left: 80%;
+}
+.add-contact {
+  position: absolute;
+  top: 94%;
+  left: 6%;
+}
+.done-button {
+  position: absolute;
+  top: 94%;
+  left: 80%;
+}
+.phone-tag, .email-tag, .address-tag, .note-tag {
+  width: 30%;
+  text-align: right;
+  color: rgb(168,168,168);
+}
+.phone-number, .email-info, .address-info, .note-info {
+  width: 70%;
+  position: absolute;
+  left: 35%;
+  text-align: left;
+}
+.phone-horizontal {
+  position: absolute;
+  top: 240px;
+  width: 50%;
+  left: 15%;
+  opacity: 0.4;
+}
+.email-horizontal {
+  position: absolute;
+  top: 290px;
+  width: 50%;
+  left: 15%;
+  opacity: 0.4;
+}
+.address-horizontal {
+  position: absolute;
+  width: 50%;
+  left: 15%;
+  opacity: 0.4;
+  margin-bottom: 10px;
+  margin-top: 75px;
+}
+.contactBucketSeparator {
+  opacity: 0.5;
+  margin-top: -14px;
+  width: 90%;
+  left: 0px;
+  margin-left: 5px;
+}
+.list-contact-name {
+  margin-top: 5px;
+}
+.characterBucket {
+  margin-top: 30px;
+  opacity: 0.5;
+  font-size: 18px;
+}
+.firstName-input {
+  font-size: 40px;
+  font-family: ".SF NS Display";
+  margin-top: 25px;
+  width: 150px;
+}
+.lastName-input {
+  font-size: 40px;
+  font-family: ".SF NS Display";
+  margin-top: 25px;
+  margin-left: 60px;
+}
+.lastName-input-tag {
+  margin-top: 0px;
+  margin-left: 60px;
+}
+.edit-container {
+  position: absolute;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+}
+.email-info, .phone-info, .address-info, .note-info {
+  width: 200px;
+  left: 35%;
+  position: absolute;
+}
+.blue {
+  background: #0463e1;
+  color: white;
+}
+.delete-button {
+  background: red;
+  border-radius: 100%;
+  color: white;
+  opacity: 0.7;
+  border: 0px;
+  left: 80%;
+  position: absolute;
+  margin-top: 1px;
+}
+.delete-button:active {
+  border: none;
+}
+
+
+
