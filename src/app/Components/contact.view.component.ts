@@ -11,17 +11,22 @@ import {ContactService} from '../Services/contact.services';
 
 export class ContactViewComponent {
 
-  @Input() selectedContact;
-  @Input() inEdit: boolean;
+  //input fields:
   email = "";
   phone = "";
   address = "";
   notes = "";
   firstName = "";
   lastName = "";
+
+  //inputs:
   @Input() index;
   @Input() contactList;
   @Input() inCreate: boolean;
+  @Input() selectedContact;
+  @Input() inEdit: boolean;
+
+  //outputs:
   @Output() addContact: EventEmitter<any> = new EventEmitter();
   @Output() update: EventEmitter<any> = new EventEmitter<any>();
   @Output() edit: EventEmitter<any> = new EventEmitter<any>();
@@ -36,16 +41,24 @@ export class ContactViewComponent {
     this.inCreate = false;
   }
 
+  /**
+   * toggles 'edit' mode
+   */
   toggleEditPage() {
     this.inEdit = !this.inEdit;
     this.editMode.emit(this.inEdit);
   }
 
+  /**
+   * uploadContact()
+   * ensures first and last name are properly formatted
+   * emits event for app component to update database with new contact
+   */
   uploadContact() {
     if(!this.firstName || !this.lastName) {
       alert("Please fill out both name fields");
     } else if(!this.firstName.match(/^[A-Za-z][A-Za-z0-9 -]*$/g) || !this.lastName.match(/^[A-Za-z][A-Za-z0-9 -]*$/g)) {
-      alert("Names cannot begin with a number.");
+      alert("Improper formatting of name fields!.");
     }
     else {
       const newContact = {
@@ -68,6 +81,11 @@ export class ContactViewComponent {
     }
   }
 
+  /**
+   * cancel()
+   * disables 'create' and 'edit' mode
+   * sets input fields to ""
+   */
   cancel() {
     this.inEdit = false;
     this.inCreate = false;
@@ -79,12 +97,16 @@ export class ContactViewComponent {
     this.notes = "";
   }
 
+  /**
+   * grabs the contact information from the input and emits
+   * event for app component to send contact to database
+   */
   updateContact() {
     this.inEdit = false;
     if(!this.firstName || !this.lastName) {
       alert("Please fill out both name fields");
     } else if(!this.firstName.match(/^[A-Za-z][A-Za-z0-9 -]*$/g) || !this.lastName.match(/^[A-Za-z][A-Za-z0-9 -]*$/g)) {
-      alert("Names cannot begin with a number.");
+      alert("Improper formatting of name fields");
     } else {
       const tempContact = {
         "id": this.selectedContact.id,

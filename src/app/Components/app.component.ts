@@ -8,9 +8,12 @@ import {ContactService} from '../Services/contact.services';
 })
 export class AppComponent {
 
-  inEdit;
-  inCreate;
-  nonCategoryContacts;
+  inEdit; //used to tell if in 'edit' mode
+  inCreate; //used to tell if in 'create' mode
+  nonCategoryContacts; 'list of contacts, unorganized (not alphabetical)'
+
+  //contacts object is used to hold all the contacts in alphabetical order
+  //and can be easily hashed by the first letter in last name
   contacts = {
     'a': [], 'b': [], 'c': [], 'd': [],
     'e': [], 'f': [], 'g': [], 'h': [],
@@ -21,9 +24,11 @@ export class AppComponent {
     'y': [], 'z': []
   };
 
-  currentIndex;
-  currentContact;
+  currentIndex; //index in contacts sub list of selected contact
+  currentContact; //selected contact info
   index;
+
+  //Outputs:
   @Output() edit: EventEmitter<any> = new EventEmitter();
 
 
@@ -37,6 +42,10 @@ export class AppComponent {
     this.getContacts();
 
   }
+
+  /**
+   * getContacts() loads the contacts from the database
+   */
   getContacts() {
     this.contactService.getContacts().subscribe(contacts => {
       if(contacts[0]) {
@@ -55,6 +64,9 @@ export class AppComponent {
     });
   }
 
+  /**
+   * deleteContact(contact) deletes the passed in contact from the database
+   */
   deleteContact(contact){
     this.contactService.deleteContact(contact.id).subscribe(value => {
       this.currentContact = null;
@@ -67,7 +79,10 @@ export class AppComponent {
     });
   }
 
-
+  /**
+   * update the local contact list with the contact list from the database
+   * to allow the component to load the contacts
+   */
   updateContactList(contacts) {
     this.contacts = {
       'a': [], 'b': [], 'c': [], 'd': [],
@@ -87,9 +102,11 @@ export class AppComponent {
     this.contacts = this.contactService.sortAlphabetically(this.contacts);
   }
 
+  /**
+   * addContact(contact) adds passed in contact to database
+   * @param contact
+   */
   addContact(contact) {
-    // this.nonCategoryContacts.push(contact);
-    // this.updateContactList([contact]);
     this.contactService.addContact(contact).subscribe((contact) => {
       this.getContacts();
       this.currentContact = contact;
@@ -98,6 +115,11 @@ export class AppComponent {
     })
   }
 
+
+  /**
+   * editContact(contact) edits the contact in the database
+   * @param contact
+   */
   editContact(contact) {
     this.inEdit = false;
     this.contactService.updateContact(contact).subscribe((contact) => {
@@ -108,14 +130,16 @@ export class AppComponent {
     })
   }
 
-
+  /**
+   * updates the contact page view by loading selected contact and disabling
+   * 'edit' and 'create' mode
+   * @param refObj
+   */
   updateContactView(refObj) {
     this.currentContact = refObj.contact;
     this.currentIndex = refObj.index;
     this.inCreate = false;
     this.inEdit = false;
-    //this.contactService.updateContact(this.contacts, object.contact, object.index);
-
   }
 
 

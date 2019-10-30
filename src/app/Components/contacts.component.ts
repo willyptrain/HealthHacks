@@ -9,10 +9,15 @@ import {ContactService} from '../Services/contact.services';
 
 export class ContactsComponent {
 
+
+  object = Object; //used to get keys from contact object
+
+  //Inputs:
   @Input() contactList;
   @Input() inEdit;
   @Input() currentContact;
-  object = Object;
+
+  //Outputs:
   @Output() select: EventEmitter<any> = new EventEmitter();
   @Output() delete: EventEmitter<any> = new EventEmitter();
 
@@ -25,6 +30,13 @@ export class ContactsComponent {
     }
   }
 
+  /**
+   * updateStyles
+   * updates the sidelist to make selected contact appear blue
+   * and others are not shaded blue.
+   * @param contact
+   * @param selectedIndex
+   */
   updateStyles(contact, selectedIndex) {
     if(this.contactList && contact) {
       if(contact.lastName) {
@@ -40,10 +52,20 @@ export class ContactsComponent {
     }
   }
 
+  /**
+   * sends event to app component for contact to be deleted from the database
+   * @param contact
+   */
   removeContact(contact) {
     this.delete.emit(contact);
   }
 
+  /**
+   * selectContact()
+   * selects the contact from the side list to be shown
+   * @param contact
+   * @param index
+   */
   selectContact(contact, index) {
     this.updateStyles(contact, index);
     var referenceObj = {

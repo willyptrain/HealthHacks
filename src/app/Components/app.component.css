@@ -143,6 +143,17 @@
   background: red;
   width: 100%;
 }
+.email-info-loaded {
+  top: 0px;
+  width: 50%;
+  position: absolute;
+  left: 35%;
+  text-align: left;
+  height: 18px;
+  text-overflow: ellipsis;
+  display: block;
+  overflow: hidden;
+}
 .address-info {
   height: 50px;
   text-overflow: ellipsis;
@@ -152,6 +163,11 @@
   height: 60px;
   text-overflow: ellipsis;
   overflow: scroll;
+}
+.side-list-container {
+  text-overflow: ellipsis;
+  overflow: scroll;
+  height: 100%;
 }
 .phone-horizontal {
   position: absolute;
@@ -214,9 +230,9 @@
   width: 100%;
 }
 .email-info, .phone-number, .address-info, .note-info {
-  width: 200px;
-  left: 35%;
-  position: absolute;
+  /*width: 200px;*/
+  /*left: 35%;*/
+  /*position: absolute;*/
 }
 .blue {
   background: #0463e1;
