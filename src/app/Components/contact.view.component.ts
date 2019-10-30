@@ -12,22 +12,23 @@ import {ContactService} from '../Services/contact.services';
 export class ContactViewComponent {
 
   @Input() selectedContact;
-  inEdit: boolean;
-  inCreate: boolean;
+  @Input() inEdit: boolean;
   email = "";
   phone = "";
   address = "";
   notes = "";
   firstName = "";
   lastName = "";
+  @Input() index;
   @Input() contactList;
-  @Input() currentContact;
+  @Input() inCreate: boolean;
   @Output() addContact: EventEmitter<any> = new EventEmitter();
   @Output() update: EventEmitter<any> = new EventEmitter<any>();
   @Output() edit: EventEmitter<any> = new EventEmitter<any>();
+  @Output() editMode: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private contactService: ContactService) {
-    // this.contactService = contactService;
+    this.contactService = contactService;
   }
 
   ngOnInit() {
@@ -37,40 +38,71 @@ export class ContactViewComponent {
 
   toggleEditPage() {
     this.inEdit = !this.inEdit;
-    this.edit.emit(this.inEdit);
+    this.editMode.emit(this.inEdit);
   }
 
   uploadContact() {
-    const newContact = {
-      "id":this.contactList.length+1,
-      "firstName": this.firstName ? this.firstName : "FirstName",
-      "lastName": this.lastName ? this.lastName : "LastName",
-      "phone": this.phone,
-      "email": this.email,
-      "notes": this.notes
-    };
+    if(!this.firstName || !this.lastName) {
+      alert("Please fill out both name fields");
+    } else if(!this.firstName.match(/^[A-Za-z][A-Za-z0-9 -]*$/g) || !this.lastName.match(/^[A-Za-z][A-Za-z0-9 -]*$/g)) {
+      alert("Names cannot begin with a number.");
+    }
+    else {
+      const newContact = {
+        "id": this.index,
+        "firstName": this.firstName,
+        "lastName": this.lastName,
+        "address": this.address,
+        "phone": this.phone,
+        "email": this.email,
+        "notes": this.notes
+      };
+      this.inCreate = false;
+      this.addContact.emit(newContact);
+      this.firstName = "";
+      this.lastName = "";
+      this.address = "";
+      this.phone = "";
+      this.email = "";
+      this.notes = "";
+    }
+  }
+
+  cancel() {
+    this.inEdit = false;
     this.inCreate = false;
-    this.addContact.emit(newContact);
+    this.firstName = "";
+    this.lastName = "";
+    this.address = "";
+    this.phone = "";
+    this.email = "";
+    this.notes = "";
   }
 
   updateContact() {
     this.inEdit = false;
-    let index = 0;
-    const tempContact = {
-      "id":this.contactList.length+1,
-      "firstName": this.firstName,
-      "lastName": this.lastName,
-      "phone": this.phone,
-      "email": this.email,
-      "notes": this.notes
-    };
-    var event = {
-      "contact":tempContact,
-      "index":index
-    };
-
-
-    this.edit.emit(false);
+    if(!this.firstName || !this.lastName) {
+      alert("Please fill out both name fields");
+    } else if(!this.firstName.match(/^[A-Za-z][A-Za-z0-9 -]*$/g) || !this.lastName.match(/^[A-Za-z][A-Za-z0-9 -]*$/g)) {
+      alert("Names cannot begin with a number.");
+    } else {
+      const tempContact = {
+        "id": this.selectedContact.id,
+        "firstName": this.firstName,
+        "lastName": this.lastName,
+        "address": this.address,
+        "phone": this.phone,
+        "email": this.email,
+        "notes": this.notes
+      };
+      this.edit.emit(tempContact);
+      this.firstName = "";
+      this.lastName = "";
+      this.address = "";
+      this.phone = "";
+      this.email = "";
+      this.notes = "";
+    }
   }
 
 

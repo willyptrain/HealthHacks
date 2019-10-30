@@ -8,21 +8,8 @@ import {ContactService} from '../Services/contact.services';
 })
 export class AppComponent {
 
-  test = {
-    'firstName': 'Steve',
-    'lastName': 'Jobs',
-    'phone': '111-222-1234',
-    'email': '1234steve@gmail.com',
-    'notes': ''
-  };
-  test2 = {
-    'firstName': 'Bon',
-    'lastName': 'Apple',
-    'phone': '111-222-1234',
-    'email': '1234bon@gmail.com',
-    'notes': ''
-  };
   inEdit;
+  inCreate;
   nonCategoryContacts;
   contacts = {
     'a': [], 'b': [], 'c': [], 'd': [],
@@ -36,6 +23,7 @@ export class AppComponent {
 
   currentIndex;
   currentContact;
+  index;
   @Output() edit: EventEmitter<any> = new EventEmitter();
 
 
@@ -44,7 +32,6 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    this.currentContact = this.test;
     this.currentIndex = 0;
     this.inEdit = false;
     this.getContacts();
@@ -52,10 +39,34 @@ export class AppComponent {
   }
   getContacts() {
     this.contactService.getContacts().subscribe(contacts => {
+      if(contacts[0]) {
+        if(!this.currentContact) {
+          this.currentContact = contacts[0];
+        }
+        this.nonCategoryContacts = contacts;
+        this.index += this.nonCategoryContacts.length+1;
+
+      } else {
+        this.index = 0;
+        this.nonCategoryContacts = [];
+        this.currentContact = null;
+      }
       this.updateContactList(contacts);
-      this.nonCategoryContacts = contacts;
     });
   }
+
+  deleteContact(contact){
+    this.contactService.deleteContact(contact.id).subscribe(value => {
+      this.currentContact = null;
+      this.getContacts();
+      this.index = this.nonCategoryContacts ? this.nonCategoryContacts.length : 1;
+      this.inEdit = false;
+    }, error => {
+      console.log(error);
+      this.inEdit = false;
+    });
+  }
+
 
   updateContactList(contacts) {
     this.contacts = {
@@ -69,34 +80,40 @@ export class AppComponent {
     };
     for (var i = 0; i < contacts.length; i++) {
       var lastNameLetter = contacts[i].lastName.charAt(0).toLowerCase();
-      if(lastNameLetter) {
+      if(this.contacts[lastNameLetter]) {
         this.contacts[lastNameLetter].push(contacts[i]);
       }
     }
-    let index = 0;
-    this.contactService.updateContact(this.contacts, contacts[index], index);
     this.contacts = this.contactService.sortAlphabetically(this.contacts);
   }
 
   addContact(contact) {
     // this.nonCategoryContacts.push(contact);
     // this.updateContactList([contact]);
-    this.contactService.addContact(contact).subscribe((success) => {
-      console.log("Added contact");
+    this.contactService.addContact(contact).subscribe((contact) => {
       this.getContacts();
+      this.currentContact = contact;
     }, (error) => {
       console.log(error);
     })
-
   }
 
-  deleteContact(contact) {
-
+  editContact(contact) {
+    this.inEdit = false;
+    this.contactService.updateContact(contact).subscribe((contact) => {
+      this.getContacts();
+      this.currentContact = contact;
+    }, (error) => {
+      console.log(error);
+    })
   }
+
 
   updateContactView(refObj) {
     this.currentContact = refObj.contact;
     this.currentIndex = refObj.index;
+    this.inCreate = false;
+    this.inEdit = false;
     //this.contactService.updateContact(this.contacts, object.contact, object.index);
 
   }

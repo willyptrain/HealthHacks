@@ -34,6 +34,11 @@
   position: absolute;
   left: 85px;
   margin: 0px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 25%;
+  display: block;
+  overflow: hidden
 }
 .firstName {
   margin-bottom: 0px;
@@ -50,8 +55,12 @@
 .lastName-container {
   top: 50px;
   position: absolute;
-  left: 225px;
+  left: 40%;
   margin: 0px;
+  text-overflow: ellipsis;
+  width: 30%;
+  display: block;
+  overflow: hidden;
 }
 .field-container {
   display: flex;
@@ -59,6 +68,7 @@
   text-align: center;
   width: 100%;
 }
+
 .phone {
   position: absolute;
   top: 200px;
@@ -69,11 +79,11 @@
 }
 .address {
   position: absolute;
-  top: 300px;
+  top: 330px;
 }
 .note {
   position: absolute;
-  top: 350px;
+  top: 400px;
   margin-top: 25px;
   bottom: 200px;
 }
@@ -86,41 +96,81 @@
   position: absolute;
   top: 94%;
   left: 6%;
+  height: 21px;
+  width: 30px;
+  font-size: 14px;
 }
 .done-button {
   position: absolute;
   top: 94%;
   left: 80%;
 }
+.cancel-button {
+  position: absolute;
+  top: 94%;
+  left: 70%;
+}
+.phone-tag {
+  top: -18px;
+}
+.email-tag {
+  top: 245px;
+}
+
+
 .phone-tag, .email-tag, .address-tag, .note-tag {
   width: 30%;
   text-align: right;
   color: rgb(168,168,168);
 }
 .phone-number, .email-info, .address-info, .note-info {
-  width: 70%;
+  width: 50%;
   position: absolute;
   left: 35%;
   text-align: left;
+  height: 18px;
+  text-overflow: ellipsis;
+  display: block;
+  overflow: hidden;
+}
+.email-info {
+  top: 12px;
+}
+.edit-sub-container {
+  position: absolute;
+  top: 40px;
+  text-align: center;
+  background: red;
+  width: 100%;
+}
+.address-info {
+  height: 50px;
+  text-overflow: ellipsis;
+  overflow: scroll;
+}
+.note-info {
+  height: 60px;
+  text-overflow: ellipsis;
+  overflow: scroll;
 }
 .phone-horizontal {
   position: absolute;
-  top: 240px;
-  width: 50%;
-  left: 15%;
+  top: 38px;
   opacity: 0.4;
+  width: 80%;
+  left: 10%;
 }
 .email-horizontal {
   position: absolute;
-  top: 290px;
-  width: 50%;
-  left: 15%;
+  top: 48px;
   opacity: 0.4;
+  width: 80%;
+  left: 10%;
 }
 .address-horizontal {
   position: absolute;
-  width: 50%;
-  left: 15%;
+  width: 80%;
+  left: 10%;
   opacity: 0.4;
   margin-bottom: 10px;
   margin-top: 75px;
@@ -150,11 +200,12 @@
   font-size: 40px;
   font-family: ".SF NS Display";
   margin-top: 25px;
-  margin-left: 60px;
+  margin-left: 0px;
+  width: 195px;
 }
 .lastName-input-tag {
   margin-top: 0px;
-  margin-left: 60px;
+  margin-left: 0px;
 }
 .edit-container {
   position: absolute;
@@ -162,7 +213,7 @@
   height: 100%;
   width: 100%;
 }
-.email-info, .phone-info, .address-info, .note-info {
+.email-info, .phone-number, .address-info, .note-info {
   width: 200px;
   left: 35%;
   position: absolute;
@@ -175,7 +226,6 @@
   background: red;
   border-radius: 100%;
   color: white;
-  opacity: 0.7;
   border: 0px;
   left: 80%;
   position: absolute;
@@ -184,6 +234,17 @@
 .delete-button:active {
   border: none;
 }
-
+.create-container {
+  position: absolute;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+}
+.empty-contact-label {
+  opacity: 0.9;
+  position: absolute;
+  top: 20%;
+  left: 30%;
+}
 
 

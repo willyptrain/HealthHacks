@@ -1,49 +1,31 @@
 {
   "contacts": [
     {
-      "firstName": "Steve",
-      "lastName": "Jobs",
-      "phone": "111-222-1234",
-      "email": "1234steve@gmail.com",
-      "notes": ""
-    },
-    {
-      "firstName": "Bon",
-      "lastName": "Apple",
-      "phone": "111-222-1234",
-      "email": "1234bon@gmail.com",
-      "notes": ""
-    },
-    {
-      "firstName": "Jimmy",
-      "lastName": "Hendrix",
-      "phone": "111-333-1234",
-      "email": "1234jimbo@gmail.com",
-      "notes": ""
-    },
-    {
-      "id": "3",
-      "firstName": "",
-      "lastName": "",
+      "id": 1,
+      "firstName": "p",
+      "lastName": "willy",
+      "address": "",
       "phone": "",
       "email": "",
       "notes": ""
     },
     {
-      "id": 5,
-      "firstName": "rkjngrkjn",
-      "lastName": "rkjgkrj",
-      "phone": "",
-      "email": "",
-      "notes": ""
+      "id": 4,
+      "firstName": "one",
+      "lastName": "new",
+      "address": "llkkjd",
+      "phone": "eflefe",
+      "email": "fjel",
+      "notes": "ljeflkjf"
     },
     {
-      "id": 6,
-      "firstName": "Will",
-      "lastName": "Henderson",
-      "phone": "",
-      "email": "",
-      "notes": ""
+      "id": 13,
+      "firstName": "new",
+      "lastName": "name",
+      "address": "m",
+      "phone": "m",
+      "email": "m",
+      "notes": "m"
     }
   ]
 }

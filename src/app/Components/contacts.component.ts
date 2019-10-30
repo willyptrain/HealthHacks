@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {ContactService} from '../Services/contact.services';
 
 @Component({
   selector: 'app-contacts',
@@ -15,17 +16,17 @@ export class ContactsComponent {
   @Output() select: EventEmitter<any> = new EventEmitter();
   @Output() delete: EventEmitter<any> = new EventEmitter();
 
-  constructor() {
-
-
+  constructor(private contactService: ContactService) {
+    this.contactService = contactService;
   }
   ngOnInit() {
-    this.updateStyles(this.currentContact,0);
+    if(this.currentContact) {
+      this.updateStyles(this.currentContact, 0);
+    }
   }
 
   updateStyles(contact, selectedIndex) {
-    if(this.contactList) {
-      let foundInstance = false;
+    if(this.contactList && contact) {
       if(contact.lastName) {
         for (let character of this.object.keys(this.contactList)) {
           for (let i in this.contactList[character]) {
@@ -39,6 +40,9 @@ export class ContactsComponent {
     }
   }
 
+  removeContact(contact) {
+    this.delete.emit(contact);
+  }
 
   selectContact(contact, index) {
     this.updateStyles(contact, index);

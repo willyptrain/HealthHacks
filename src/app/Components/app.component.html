@@ -3,5 +3,6 @@
   <app-contacts [inEdit]="inEdit" [currentContact]="currentContact" (select)="updateContactView($event)" (delete)="deleteContact($event)" [contactList]="contacts"></app-contacts>
 </div>
 <div class="contact-view">
-  <app-contact-view [contactList]="nonCategoryContacts" (edit)="inEdit=$event" [currentContact]="currentContact" (addContact)="addContact($event)" [selectedContact]="currentContact"></app-contact-view>
+  <app-contact-view [index]="index" [inCreate]="inCreate" [inEdit]="inEdit" [contactList]="nonCategoryContacts" (editMode)="inEdit=$event" (edit)="editContact($event)"
+                    (addContact)="addContact($event)" [selectedContact]="currentContact"></app-contact-view>
 </div>
