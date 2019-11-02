@@ -7,20 +7,26 @@ import {PatientsComponent} from './Components/patients.component';
 import {PatientViewComponent} from './Components/patient.view.component';
 import {PatientService} from './Services/patient.services';
 import {TranslationService} from './Services/translation.service';
-
+import { AppRoutingModule } from './app-routing.module';
+import {RecordingComponent} from './Components/recording.component';
+import {PatientInterfaceComponent} from './Components/patient.interface.component';
+import {SpeechService} from './Services/speech.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     PatientsComponent,
-    PatientViewComponent
+    PatientViewComponent,
+    RecordingComponent,
+    PatientInterfaceComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
-  providers: [PatientService, TranslationService],
+  providers: [PatientService, TranslationService, SpeechService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

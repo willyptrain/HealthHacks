@@ -1,8 +1,1 @@
-
-<div class="patient-side-list">
-  <app-patients [inEdit]="inEdit" [currentPatient]="currentPatient" (select)="updatePatientView($event)" (delete)="deletePatient($event)" [patientList]="patients"></app-patients>
-</div>
-<div class="patient-view">
-  <app-patient-view [index]="index" [inCreate]="inCreate" [inEdit]="inEdit" [patientList]="nonCategoryPatients" (editMode)="inEdit=$event" (edit)="editPatient($event)"
-                    (addPatient)="addPatient($event)" [selectedPatient]="currentPatient"></app-patient-view>
-</div>
+<router-outlet></router-outlet>

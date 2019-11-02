@@ -1,5 +1,5 @@
 
-<div class="side-list-container">
+<div *ngIf="patientList" class="side-list-container">
   <div *ngFor="let character of object.keys(patientList)">
     <p class="characterBucket" *ngIf="patientList[character].length > 0">&nbsp;&nbsp;{{character.toUpperCase()}}</p>
     <hr *ngIf="patientList[character].length > 0" class="patientBucketSeparator">

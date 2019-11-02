@@ -113,6 +113,6 @@
   <button *ngIf="!inCreate && inEdit" class="done-button" (click)="updatePatient()">Done</button>
   <button *ngIf="inCreate && !inEdit" class="done-button" (click)="uploadPatient()">Done</button>
 
-  <button *ngIf="!inCreate && !inEdit" class="record-button" (click)="uploadPatient()">Make Recording</button>
+  <a *ngIf="selectedPatient" routerLink="/record/{{selectedPatient.id}}"><button *ngIf="!inCreate && !inEdit" class="record-button">Make Recording</button></a>
 
 </div>
