@@ -12,10 +12,10 @@ import {PatientService} from '../Services/patient.services';
 export class PatientViewComponent {
 
   //input fields:
-  email = "";
-  phone = "";
-  address = "";
-  notes = "";
+  doctorAssigned = "";
+  DOB = "";
+  visits = "";
+  allergies = "";
   firstName = "";
   lastName = "";
 
@@ -65,19 +65,19 @@ export class PatientViewComponent {
         "id": this.index,
         "firstName": this.firstName,
         "lastName": this.lastName,
-        "address": this.address,
-        "phone": this.phone,
-        "email": this.email,
-        "notes": this.notes
+        "visits": this.visits,
+        "DOB": this.DOB,
+        "doctorAssigned": this.doctorAssigned,
+        "allergies": this.allergies
       };
       this.inCreate = false;
       this.addPatient.emit(newPatient);
       this.firstName = "";
       this.lastName = "";
-      this.address = "";
-      this.phone = "";
-      this.email = "";
-      this.notes = "";
+      this.visits = "";
+      this.DOB = "";
+      this.doctorAssigned = "";
+      this.allergies = "";
     }
   }
 
@@ -91,10 +91,10 @@ export class PatientViewComponent {
     this.inCreate = false;
     this.firstName = "";
     this.lastName = "";
-    this.address = "";
-    this.phone = "";
-    this.email = "";
-    this.notes = "";
+    this.visits = "";
+    this.DOB = "";
+    this.doctorAssigned = "";
+    this.allergies = "";
   }
 
   /**
@@ -112,18 +112,18 @@ export class PatientViewComponent {
         "id": this.selectedPatient.id,
         "firstName": this.firstName,
         "lastName": this.lastName,
-        "address": this.address,
-        "phone": this.phone,
-        "email": this.email,
-        "notes": this.notes
+        "visits": this.visits,
+        "DOB": this.DOB,
+        "doctorAssigned": this.doctorAssigned,
+        "allergies": this.allergies
       };
       this.edit.emit(tempPatient);
       this.firstName = "";
       this.lastName = "";
-      this.address = "";
-      this.phone = "";
-      this.email = "";
-      this.notes = "";
+      this.visits = "";
+      this.DOB = "";
+      this.doctorAssigned = "";
+      this.allergies = "";
     }
   }
 
