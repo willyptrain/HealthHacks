@@ -11,6 +11,9 @@ import { AppRoutingModule } from './app-routing.module';
 import {RecordingComponent} from './Components/recording.component';
 import {PatientInterfaceComponent} from './Components/patient.interface.component';
 import {SpeechService} from './Services/speech.service';
+import {
+  SpeechRecognitionModule,
+} from '@kamiazya/ngx-speech-recognition';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,12 @@ import {SpeechService} from './Services/speech.service';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SpeechRecognitionModule.withConfig({
+      lang: 'en-US',
+      interimResults: true,
+      maxAlternatives: 10,
+    })
   ],
   providers: [PatientService, TranslationService, SpeechService],
   bootstrap: [AppComponent]

@@ -34,16 +34,24 @@ export class TranslationService {
 
 
     translateText(lang1, lang2, transcript){
-        let api = "AIzaSyBfxUHvG5D1YI4ehvEZHYnH47zoyQS_yIc";
-        let googleTranslate = require('google-translate')(api);
 
-        let text = transcript;
-        //console.log("English :>",lang1);
-        let langCode2 = this.getLanguageCode(lang2);
-        googleTranslate.translate(text, langCode2, function(err, translation) {
-        //console.log("Spanish :>",translation.translatedText);
-            this.setTranslatedText(translation.translatedText);
-        });
+
+      //   let api = "AIzaSyBfxUHvG5D1YI4ehvEZHYnH47zoyQS_yIc";
+      //   // @ts-ignore
+      // let googleTranslate = require('google-translate')(api);
+      //
+      //   let text = transcript;
+      //   //console.log("English :>",lang1);
+      //   let langCode2 = this.getLanguageCode(lang2);
+      //   googleTranslate.translate(text, langCode2, function(err, translation) {
+      //   //console.log("Spanish :>",translation.translatedText);
+      //       this.setTranslatedText(translation.translatedText);
+      //   });
         }
-    
+
+
+
+
+
+
 }
