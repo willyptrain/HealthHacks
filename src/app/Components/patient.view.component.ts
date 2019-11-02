@@ -1,15 +1,15 @@
 
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {ContactService} from '../Services/contact.services';
+import {PatientService} from '../Services/patient.services';
 
 
 @Component({
-  selector: 'app-contact-view',
-  templateUrl: './contact.view.component.html',
+  selector: 'app-patient-view',
+  templateUrl: './patient.view.component.html',
   styleUrls: ['./app.component.css']
 })
 
-export class ContactViewComponent {
+export class PatientViewComponent {
 
   //input fields:
   email = "";
@@ -21,19 +21,19 @@ export class ContactViewComponent {
 
   //inputs:
   @Input() index;
-  @Input() contactList;
+  @Input() patientList;
   @Input() inCreate: boolean;
-  @Input() selectedContact;
+  @Input() selectedPatient;
   @Input() inEdit: boolean;
 
   //outputs:
-  @Output() addContact: EventEmitter<any> = new EventEmitter();
+  @Output() addPatient: EventEmitter<any> = new EventEmitter();
   @Output() update: EventEmitter<any> = new EventEmitter<any>();
   @Output() edit: EventEmitter<any> = new EventEmitter<any>();
   @Output() editMode: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private contactService: ContactService) {
-    this.contactService = contactService;
+  constructor(private patientService: PatientService) {
+    this.patientService = patientService;
   }
 
   ngOnInit() {
@@ -50,18 +50,18 @@ export class ContactViewComponent {
   }
 
   /**
-   * uploadContact()
+   * uploadPatient()
    * ensures first and last name are properly formatted
-   * emits event for app component to update database with new contact
+   * emits event for app component to update database with new patient
    */
-  uploadContact() {
+  uploadPatient() {
     if(!this.firstName || !this.lastName) {
       alert("Please fill out both name fields");
     } else if(!this.firstName.match(/^[A-Za-z][A-Za-z0-9 -]*$/g) || !this.lastName.match(/^[A-Za-z][A-Za-z0-9 -]*$/g)) {
       alert("Improper formatting of name fields!.");
     }
     else {
-      const newContact = {
+      const newPatient = {
         "id": this.index,
         "firstName": this.firstName,
         "lastName": this.lastName,
@@ -71,7 +71,7 @@ export class ContactViewComponent {
         "notes": this.notes
       };
       this.inCreate = false;
-      this.addContact.emit(newContact);
+      this.addPatient.emit(newPatient);
       this.firstName = "";
       this.lastName = "";
       this.address = "";
@@ -98,18 +98,18 @@ export class ContactViewComponent {
   }
 
   /**
-   * grabs the contact information from the input and emits
-   * event for app component to send contact to database
+   * grabs the patient information from the input and emits
+   * event for app component to send patient to database
    */
-  updateContact() {
+  updatePatient() {
     this.inEdit = false;
     if(!this.firstName || !this.lastName) {
       alert("Please fill out both name fields");
     } else if(!this.firstName.match(/^[A-Za-z][A-Za-z0-9 -]*$/g) || !this.lastName.match(/^[A-Za-z][A-Za-z0-9 -]*$/g)) {
       alert("Improper formatting of name fields");
     } else {
-      const tempContact = {
-        "id": this.selectedContact.id,
+      const tempPatient = {
+        "id": this.selectedPatient.id,
         "firstName": this.firstName,
         "lastName": this.lastName,
         "address": this.address,
@@ -117,7 +117,7 @@ export class ContactViewComponent {
         "email": this.email,
         "notes": this.notes
       };
-      this.edit.emit(tempContact);
+      this.edit.emit(tempPatient);
       this.firstName = "";
       this.lastName = "";
       this.address = "";
@@ -128,7 +128,7 @@ export class ContactViewComponent {
   }
 
 
-  createContact() {
+  createPatient() {
     this.inCreate = true;
   }
 

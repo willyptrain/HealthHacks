@@ -1,71 +1,71 @@
 <div class="view-page">
-  <div class="fullName-container" *ngIf="!inEdit && !inCreate && selectedContact">
+  <div class="fullName-container" *ngIf="!inEdit && !inCreate && selectedPatient">
     <div class="firstName-container">
-      <h2 class="firstName">{{selectedContact.firstName}}</h2>
+      <h2 class="firstName">{{selectedPatient.firstName}}</h2>
     </div>
     <div class="lastName-container">
-      <h2 class="lastName">{{selectedContact.lastName}}</h2>
+      <h2 class="lastName">{{selectedPatient.lastName}}</h2>
     </div>
   </div>
-  <div *ngIf="!inEdit && !inCreate && selectedContact" contact-container>
+  <div *ngIf="!inEdit && !inCreate && selectedPatient" patient-container>
     <div class="field-container phone">
       <p class="phone-tag">phone</p>
-      <p class="phone-number">{{selectedContact.phone}}</p>
+      <p class="phone-number">{{selectedPatient.phone}}</p>
       <hr class="phone-horizontal">
     </div>
     <div class="field-container email">
       <p class="email-tag">email</p>
-      <p class="email-info-loaded">{{selectedContact.email}}</p>
+      <p class="email-info-loaded">{{selectedPatient.email}}</p>
       <hr class="email-horizontal">
     </div>
     <div class="field-container address">
       <p class="address-tag">address</p>
-      <p class="address-info">{{selectedContact.address}}</p>
+      <p class="address-info">{{selectedPatient.address}}</p>
       <hr class="address-horizontal">
     </div>
 
     <div class="field-container note">
       <p class="note-tag">note</p>
-      <p class="note-info">{{selectedContact.notes}}</p>
+      <p class="note-info">{{selectedPatient.notes}}</p>
     </div>
   </div>
 
   <div class="edit-container" *ngIf="inEdit && !inCreate">
     <div class="fullName-container">
       <div class="firstName-container">
-        <input *ngIf="selectedContact" [(ngModel)]="firstName" class="firstName-input" placeholder="{{selectedContact.firstName}}"/>
-        <input *ngIf="!selectedContact" [(ngModel)]="firstName" class="firstName-input" placeholder=""/>
+        <input *ngIf="selectedPatient" [(ngModel)]="firstName" class="firstName-input" placeholder="{{selectedPatient.firstName}}"/>
+        <input *ngIf="!selectedPatient" [(ngModel)]="firstName" class="firstName-input" placeholder=""/>
         <p class="firstName-tag">first name</p>
       </div>
       <div class="lastName-container">
-        <input *ngIf="selectedContact" [(ngModel)]="lastName" class="lastName-input" placeholder="{{selectedContact.lastName}}"/>
-        <input *ngIf="!selectedContact" [(ngModel)]="lastName" class="lastName-input" placeholder=""/>
+        <input *ngIf="selectedPatient" [(ngModel)]="lastName" class="lastName-input" placeholder="{{selectedPatient.lastName}}"/>
+        <input *ngIf="!selectedPatient" [(ngModel)]="lastName" class="lastName-input" placeholder=""/>
         <p class="lastName-input-tag">last name</p>
       </div>
     </div>
     <div class="edit-sub-container">
       <div class="field-container phone">
         <p class="phone-tag">phone</p>
-        <input *ngIf="selectedContact" [(ngModel)]="phone" class="phone-number" placeholder="{{selectedContact.phone}}" />
-        <input *ngIf="!selectedContact" [(ngModel)]="phone" class="phone-number" placeholder="" />
+        <input *ngIf="selectedPatient" [(ngModel)]="phone" class="phone-number" placeholder="{{selectedPatient.phone}}" />
+        <input *ngIf="!selectedPatient" [(ngModel)]="phone" class="phone-number" placeholder="" />
         <hr class="phone-horizontal">
       </div>
       <div class="field-container email">
         <p class="email-tag">email</p>
-        <input *ngIf="selectedContact" [(ngModel)]="email" class="email-info" placeholder="{{selectedContact.email}}">
-        <input *ngIf="!selectedContact" [(ngModel)]="email" class="email-info" placeholder="">
+        <input *ngIf="selectedPatient" [(ngModel)]="email" class="email-info" placeholder="{{selectedPatient.email}}">
+        <input *ngIf="!selectedPatient" [(ngModel)]="email" class="email-info" placeholder="">
         <hr class="email-horizontal">
       </div>
       <div class="field-container address">
         <p class="address-tag">address</p>
-        <textarea *ngIf="selectedContact" [(ngModel)]="address" class="address-info" name="address" placeholder="{{selectedContact.address}}" wrap="soft"></textarea>
-        <textarea *ngIf="!selectedContact" [(ngModel)]="address" class="address-info" name="address" placeholder="" wrap="soft"></textarea>
+        <textarea *ngIf="selectedPatient" [(ngModel)]="address" class="address-info" name="address" placeholder="{{selectedPatient.address}}" wrap="soft"></textarea>
+        <textarea *ngIf="!selectedPatient" [(ngModel)]="address" class="address-info" name="address" placeholder="" wrap="soft"></textarea>
         <hr class="address-horizontal">
       </div>
       <div class="field-container note">
         <p class="note-tag">notes</p>
-        <textarea *ngIf="selectedContact" [(ngModel)]="notes" class="note-info" placeholder="{{selectedContact.notes}}"></textarea>
-        <textarea *ngIf="!selectedContact" [(ngModel)]="notes" class="note-info" placeholder=""></textarea>
+        <textarea *ngIf="selectedPatient" [(ngModel)]="notes" class="note-info" placeholder="{{selectedPatient.notes}}"></textarea>
+        <textarea *ngIf="!selectedPatient" [(ngModel)]="notes" class="note-info" placeholder=""></textarea>
       </div>
     </div>
   </div>
@@ -101,15 +101,15 @@
         <p class="note-tag">notes</p>
         <textarea [(ngModel)]="notes" class="note-info" placeholder=""></textarea>
       </div>
-      <button class="done-button" (click)="uploadContact()">Done</button>
+      <button class="done-button" (click)="uploadPatient()">Done</button>
     </div>
   </div>
 
-  <h1 class="empty-contact-label" *ngIf="!inEdit && !inCreate && !selectedContact">You have no contacts!</h1>
+  <h1 class="empty-patient-label" *ngIf="!inEdit && !inCreate && !selectedPatient">You have no patients!</h1>
 
-  <button class="add-contact" (click)="createContact()" align="center">+</button>
+  <button class="add-patient" (click)="createPatient()" align="center">+</button>
   <button class="cancel-button" *ngIf="inEdit || inCreate" (click)="cancel()">Cancel</button>
   <button class="edit-button" *ngIf="!inEdit && !inCreate" (click)="toggleEditPage()">Edit</button>
-  <button *ngIf="!inCreate && inEdit" class="done-button" (click)="updateContact()">Done</button>
-  <button *ngIf="inCreate && !inEdit" class="done-button" (click)="uploadContact()">Done</button>
+  <button *ngIf="!inCreate && inEdit" class="done-button" (click)="updatePatient()">Done</button>
+  <button *ngIf="inCreate && !inEdit" class="done-button" (click)="uploadPatient()">Done</button>
 </div>

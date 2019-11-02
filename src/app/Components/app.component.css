@@ -1,5 +1,5 @@
 
-.contact-side-list {
+.patient-side-list {
   background: rgb(225,226,228);
   height: 100%;
   position: absolute;
@@ -7,7 +7,7 @@
   top: 0px;
   left: 0px;
 }
-.contact-names {
+.patient-names {
   font-size: 1em !important;
   font-weight: normal !important;
   left: 10px;
@@ -92,7 +92,7 @@
   top: 94%;
   left: 80%;
 }
-.add-contact {
+.add-patient {
   position: absolute;
   top: 94%;
   left: 6%;
@@ -191,14 +191,14 @@
   margin-bottom: 10px;
   margin-top: 75px;
 }
-.contactBucketSeparator {
+.patientBucketSeparator {
   opacity: 0.5;
   margin-top: -14px;
   width: 90%;
   left: 0px;
   margin-left: 5px;
 }
-.list-contact-name {
+.list-patient-name {
   margin-top: 5px;
 }
 .characterBucket {
@@ -256,7 +256,7 @@
   height: 100%;
   width: 100%;
 }
-.empty-contact-label {
+.empty-patient-label {
   opacity: 0.9;
   position: absolute;
   top: 20%;

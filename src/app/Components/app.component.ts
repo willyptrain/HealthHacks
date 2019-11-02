@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {ContactService} from '../Services/contact.services';
+import {PatientService} from '../Services/patient.services';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +10,11 @@ export class AppComponent {
 
   inEdit; //used to tell if in 'edit' mode
   inCreate; //used to tell if in 'create' mode
-  nonCategoryContacts; 'list of contacts, unorganized (not alphabetical)'
+  nonCategoryPatients; 'list of patients, unorganized (not alphabetical)'
 
-  //contacts object is used to hold all the contacts in alphabetical order
+  //patients object is used to hold all the patients in alphabetical order
   //and can be easily hashed by the first letter in last name
-  contacts = {
+  patients = {
     'a': [], 'b': [], 'c': [], 'd': [],
     'e': [], 'f': [], 'g': [], 'h': [],
     'i': [], 'j': [], 'k': [], 'l': [],
@@ -24,54 +24,54 @@ export class AppComponent {
     'y': [], 'z': []
   };
 
-  currentIndex; //index in contacts sub list of selected contact
-  currentContact; //selected contact info
+  currentIndex; //index in patients sub list of selected patient
+  currentPatient; //selected patient info
   index;
 
   //Outputs:
   @Output() edit: EventEmitter<any> = new EventEmitter();
 
 
-  constructor(private contactService: ContactService) {
-    this.contactService = contactService;
+  constructor(private patientService: PatientService) {
+    this.patientService = patientService;
   }
 
   ngOnInit() {
     this.currentIndex = 0;
     this.inEdit = false;
-    this.getContacts();
+    this.getPatients();
 
   }
 
   /**
-   * getContacts() loads the contacts from the database
+   * getPatients() loads the patients from the database
    */
-  getContacts() {
-    this.contactService.getContacts().subscribe(contacts => {
-      if(contacts[0]) {
-        if(!this.currentContact) {
-          this.currentContact = contacts[0];
+  getPatients() {
+    this.patientService.getPatients().subscribe(patients => {
+      if(patients[0]) {
+        if(!this.currentPatient) {
+          this.currentPatient = patients[0];
         }
-        this.nonCategoryContacts = contacts;
-        this.index += this.nonCategoryContacts.length+1;
+        this.nonCategoryPatients = patients;
+        this.index += this.nonCategoryPatients.length+1;
 
       } else {
         this.index = 0;
-        this.nonCategoryContacts = [];
-        this.currentContact = null;
+        this.nonCategoryPatients = [];
+        this.currentPatient = null;
       }
-      this.updateContactList(contacts);
+      this.updatePatientList(patients);
     });
   }
 
   /**
-   * deleteContact(contact) deletes the passed in contact from the database
+   * deletePatient(patient) deletes the passed in patient from the database
    */
-  deleteContact(contact){
-    this.contactService.deleteContact(contact.id).subscribe(value => {
-      this.currentContact = null;
-      this.getContacts();
-      this.index = this.nonCategoryContacts ? this.nonCategoryContacts.length : 1;
+  deletePatient(patient){
+    this.patientService.deletePatient(patient.id).subscribe(value => {
+      this.currentPatient = null;
+      this.getPatients();
+      this.index = this.nonCategoryPatients ? this.nonCategoryPatients.length : 1;
       this.inEdit = false;
     }, error => {
       console.log(error);
@@ -80,11 +80,11 @@ export class AppComponent {
   }
 
   /**
-   * update the local contact list with the contact list from the database
-   * to allow the component to load the contacts
+   * update the local patient list with the patient list from the database
+   * to allow the component to load the patients
    */
-  updateContactList(contacts) {
-    this.contacts = {
+  updatePatientList(patients) {
+    this.patients = {
       'a': [], 'b': [], 'c': [], 'd': [],
       'e': [], 'f': [], 'g': [], 'h': [],
       'i': [], 'j': [], 'k': [], 'l': [],
@@ -93,23 +93,23 @@ export class AppComponent {
       'u': [], 'v': [], 'w': [], 'x': [],
       'y': [], 'z': []
     };
-    for (var i = 0; i < contacts.length; i++) {
-      var lastNameLetter = contacts[i].lastName.charAt(0).toLowerCase();
-      if(this.contacts[lastNameLetter]) {
-        this.contacts[lastNameLetter].push(contacts[i]);
+    for (var i = 0; i < patients.length; i++) {
+      var lastNameLetter = patients[i].lastName.charAt(0).toLowerCase();
+      if(this.patients[lastNameLetter]) {
+        this.patients[lastNameLetter].push(patients[i]);
       }
     }
-    this.contacts = this.contactService.sortAlphabetically(this.contacts);
+    this.patients = this.patientService.sortAlphabetically(this.patients);
   }
 
   /**
-   * addContact(contact) adds passed in contact to database
-   * @param contact
+   * addPatient(patient) adds passed in patient to database
+   * @param patient
    */
-  addContact(contact) {
-    this.contactService.addContact(contact).subscribe((contact) => {
-      this.getContacts();
-      this.currentContact = contact;
+  addPatient(patient) {
+    this.patientService.addPatient(patient).subscribe((patient) => {
+      this.getPatients();
+      this.currentPatient = patient;
     }, (error) => {
       console.log(error);
     })
@@ -117,26 +117,26 @@ export class AppComponent {
 
 
   /**
-   * editContact(contact) edits the contact in the database
-   * @param contact
+   * editPatient(patient) edits the patient in the database
+   * @param patient
    */
-  editContact(contact) {
+  editPatient(patient) {
     this.inEdit = false;
-    this.contactService.updateContact(contact).subscribe((contact) => {
-      this.getContacts();
-      this.currentContact = contact;
+    this.patientService.updatePatient(patient).subscribe((patient) => {
+      this.getPatients();
+      this.currentPatient = patient;
     }, (error) => {
       console.log(error);
     })
   }
 
   /**
-   * updates the contact page view by loading selected contact and disabling
+   * updates the patient page view by loading selected patient and disabling
    * 'edit' and 'create' mode
    * @param refObj
    */
-  updateContactView(refObj) {
-    this.currentContact = refObj.contact;
+  updatePatientView(refObj) {
+    this.currentPatient = refObj.patient;
     this.currentIndex = refObj.index;
     this.inCreate = false;
     this.inEdit = false;

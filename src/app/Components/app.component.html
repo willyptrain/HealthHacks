@@ -1,8 +1,8 @@
 
-<div class="contact-side-list">
-  <app-contacts [inEdit]="inEdit" [currentContact]="currentContact" (select)="updateContactView($event)" (delete)="deleteContact($event)" [contactList]="contacts"></app-contacts>
+<div class="patient-side-list">
+  <app-patients [inEdit]="inEdit" [currentPatient]="currentPatient" (select)="updatePatientView($event)" (delete)="deletePatient($event)" [patientList]="patients"></app-patients>
 </div>
-<div class="contact-view">
-  <app-contact-view [index]="index" [inCreate]="inCreate" [inEdit]="inEdit" [contactList]="nonCategoryContacts" (editMode)="inEdit=$event" (edit)="editContact($event)"
-                    (addContact)="addContact($event)" [selectedContact]="currentContact"></app-contact-view>
+<div class="patient-view">
+  <app-patient-view [index]="index" [inCreate]="inCreate" [inEdit]="inEdit" [patientList]="nonCategoryPatients" (editMode)="inEdit=$event" (edit)="editPatient($event)"
+                    (addPatient)="addPatient($event)" [selectedPatient]="currentPatient"></app-patient-view>
 </div>
