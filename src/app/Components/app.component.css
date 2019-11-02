@@ -250,6 +250,11 @@
 .delete-button:active {
   border: none;
 }
+.record-button {
+  position: absolute;
+  top: 94%;
+  left: 40%;
+}
 .create-container {
   position: absolute;
   top: 0px;

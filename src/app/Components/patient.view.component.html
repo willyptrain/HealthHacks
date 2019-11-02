@@ -112,4 +112,7 @@
   <button class="edit-button" *ngIf="!inEdit && !inCreate" (click)="toggleEditPage()">Edit</button>
   <button *ngIf="!inCreate && inEdit" class="done-button" (click)="updatePatient()">Done</button>
   <button *ngIf="inCreate && !inEdit" class="done-button" (click)="uploadPatient()">Done</button>
+
+  <button *ngIf="!inCreate && !inEdit" class="record-button" (click)="uploadPatient()">Make Recording</button>
+
 </div>

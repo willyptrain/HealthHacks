@@ -6,6 +6,7 @@ import { AppComponent } from './Components/app.component';
 import {PatientsComponent} from './Components/patients.component';
 import {PatientViewComponent} from './Components/patient.view.component';
 import {PatientService} from './Services/patient.services';
+import {TranslationService} from './Services/translation.service';
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import {PatientService} from './Services/patient.services';
     FormsModule,
     HttpClientModule
   ],
-  providers: [PatientService],
+  providers: [PatientService, TranslationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
