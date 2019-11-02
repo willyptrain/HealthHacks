@@ -1,56 +1,71 @@
 import {Injectable} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
+const url = 'https://translation.googleapis.com/language/translate/v2?key=';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
+
+export class GoogleObj {
+  q: string;
+  source: string = 'en';
+  target: string = 'es';
+  readonly format: string = 'text';
+
+  constructor() {}
+}
+@Injectable({
+  providedIn: 'root'
+})
+
 export class TranslationService {
 
-    initialText = "";
-    translationText = "";
 
-    setInitialText(myText){
-        this.initialText = myText;
+  initialText = "";
+  translationText = "";
+
+
+
+  setInitialText(myText){
+    this.initialText = myText;
+  }
+
+  getInitalText(){
+    return this.initialText;
+  }
+
+  setTranslatedText(translatedText){
+    this.translationText = translatedText;
+  }
+
+//Returns Language Code for a given string. Accepted strings: English, Spanish, French
+  getLanguageCode(language){
+    if(language == "English"){
+      return "en";
     }
-
-    getInitalText(){
-        return this.initialText;
+    if(language == "Spanish"){
+      return "es";
     }
-
-    setTranslatedText(translatedText){
-        this.translationText = translatedText;
+    else{
+      return "fr";
     }
+  }
 
-    //Returns Language Code for a given string. Accepted strings: English, Spanish, French
-    getLanguageCode(language){
-        if(language == "English"){
-            return 'en-US';
-        }
-        if(language == "Spanish"){
-            return 'es';
-        }
-        else{
-            return 'fr';
-        }
+  constructor(private _http: HttpClient) {}
+
+  translateText(lang1, lang2){
+    let langCode1 = this.getLanguageCode(lang1);
+    let langCode2 = this.getLanguageCode(lang2);
+    let myGoogleObj = new GoogleObj();
+    myGoogleObj.source = "en";
+    myGoogleObj.target = "es";
+    myGoogleObj.q = this.initialText;
+    if(myGoogleObj.source && myGoogleObj.target && myGoogleObj.q) {
+      let key = "AIzaSyBfxUHvG5D1YI4ehvEZHYnH47zoyQS_yIc";
+      return this._http.post(url + key, myGoogleObj);
     }
-
-
-    translateText(lang1, lang2, transcript){
-
-
-      //   let api = "AIzaSyBfxUHvG5D1YI4ehvEZHYnH47zoyQS_yIc";
-      //   // @ts-ignore
-      // let googleTranslate = require('google-translate')(api);
-      //
-      //   let text = transcript;
-      //   //console.log("English :>",lang1);
-      //   let langCode2 = this.getLanguageCode(lang2);
-      //   googleTranslate.translate(text, langCode2, function(err, translation) {
-      //   //console.log("Spanish :>",translation.translatedText);
-      //       this.setTranslatedText(translation.translatedText);
-      //   });
-        }
-
-
-
+  }
 
 
 

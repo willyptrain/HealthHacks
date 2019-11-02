@@ -8,6 +8,7 @@ import {
   SpeechRecognitionGrammars,
   SpeechRecognitionService, resultList,
 } from '@kamiazya/ngx-speech-recognition';
+import {TranslationService} from '../Services/translation.service';
 
 
 @Component({
@@ -37,15 +38,17 @@ export class RecordingComponent {
   message;
   speechService;
   stillListening;
+  translationService;
 
-  constructor(private route: ActivatedRoute, patientService: PatientService, speechService: SpeechRecognitionService) {
+  constructor(private route: ActivatedRoute, patientService: PatientService,
+              speechService: SpeechRecognitionService, translationService: TranslationService) {
     this.route = route;
     this.patientService = patientService;
     this.speechService = speechService;
     this.speechService.onresult = (e) => {
       this.message = e.results[0].item(0).transcript;
-      console.log(this.message);
     };
+    this.translationService = translationService;
   }
 
   ngOnInit() {
@@ -64,12 +67,19 @@ export class RecordingComponent {
   stopRec() {
     this.stillListening = false;
     this.speechService.stop();
+    console.log(this.message);
+    this.translationService.setInitialText(this.message);
+    this.translationService.translateText("English","Spanish").subscribe(val => {
+      console.log(val);
+    }, error => {
+      console.log(error);
+    })
   }
 
   start() {
     this.speechService.continuous = true;
     this.speechService.start();
-    
+
   }
 
 
