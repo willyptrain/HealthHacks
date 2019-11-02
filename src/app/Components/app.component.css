@@ -271,5 +271,51 @@
   top: 20%;
   left: 30%;
 }
+.mic-button {
+  color: white;
+  background: #d2423b;
+  font-size: 24px;
+  border: none;
+  height: 160px;
+  width: 160px;
+  border-radius: 95%;
+  opacity: 0.99;
+  position: absolute;
+  top: 30%;
+  left: 45%;
+}
+.mic {
+  font-size: 50px;
+}
+.mic-button:hover {
+  background: #bb322a;
+}
+.mic-button:active {
+  outline: none;
+}
+
+.stop-record {
+  position: absolute;
+  top: 60%;
+  left: 40%;
+  width: 250px;
+  height: 50px;
+  border: 3px solid;
+  font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

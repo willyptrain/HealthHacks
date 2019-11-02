@@ -10,6 +10,7 @@ import {
 } from '@kamiazya/ngx-speech-recognition';
 import {TranslationService} from '../Services/translation.service';
 
+import * as jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-recording',
@@ -39,6 +40,7 @@ export class RecordingComponent {
   speechService;
   stillListening;
   translationService;
+  translation;
 
   constructor(private route: ActivatedRoute, patientService: PatientService,
               speechService: SpeechRecognitionService, translationService: TranslationService) {
@@ -70,14 +72,31 @@ export class RecordingComponent {
     console.log(this.message);
     this.translationService.setInitialText(this.message);
     this.translationService.translateText("English","Spanish").subscribe(val => {
-      console.log(val);
+      // this.translation = val.data.translations[0].translatedText;
+      if(val.data.translations) {
+        this.saveToPDF(val.data.translations[0].translatedText);
+      }
     }, error => {
       console.log(error);
-    })
+    });
+
+
+
+  }
+
+  saveToPDF(text) {
+    this.translation = text;
+    let doc = new jsPDF();
+    doc.text(text, 10, 10); // typescript compile time error
+    doc.save('table.pdf');
+
+
+    
   }
 
   start() {
     this.speechService.continuous = true;
+    this.stillListening = true;
     this.speechService.start();
 
   }
