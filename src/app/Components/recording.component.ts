@@ -9,7 +9,7 @@ import {
   SpeechRecognitionService, resultList,
 } from '@kamiazya/ngx-speech-recognition';
 import {TranslationService} from '../Services/translation.service';
-
+import { DatePipe } from '@angular/common';
 import * as jsPDF from 'jspdf';
 
 @Component({
@@ -42,7 +42,7 @@ export class RecordingComponent {
   translationService;
   translation;
 
-  constructor(private route: ActivatedRoute, patientService: PatientService,
+  constructor(private route: ActivatedRoute, patientService: PatientService,private datePipe: DatePipe,
               speechService: SpeechRecognitionService, translationService: TranslationService) {
     this.route = route;
     this.patientService = patientService;
@@ -89,9 +89,23 @@ export class RecordingComponent {
     let doc = new jsPDF();
     doc.text(text, 10, 10); // typescript compile time error
     doc.save('table.pdf');
+    this.addRecord();
+  }
 
+  addRecord() {
+    if(this.patient) {
+      let now = new Date();
+      let date = this.datePipe.transform(now, "dd-MM-yyyy");
+      let translationObj = {
+        "text":this.translation,
+        "date":date
+      }
+      this.patient.recordings.push(translationObj);
+      this.patientService.addRecording(this.patient).subscribe(val => {
+        console.log("success");
+      });
 
-    
+    }
   }
 
   start() {

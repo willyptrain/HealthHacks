@@ -14,6 +14,7 @@ import {SpeechService} from './Services/speech.service';
 import {
   SpeechRecognitionModule,
 } from '@kamiazya/ngx-speech-recognition';
+import {DatePipe} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import {
       maxAlternatives: 10,
     })
   ],
-  providers: [PatientService, TranslationService, SpeechService],
+  providers: [PatientService, TranslationService, SpeechService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

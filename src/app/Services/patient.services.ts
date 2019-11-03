@@ -1,6 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
+
+
+
 @Injectable()
 export class PatientService {
 
@@ -34,8 +37,25 @@ export class PatientService {
     return this.http.delete(this._url+id);
   }
   updatePatient(patient) {
-    return this.http.put((this._url+patient.id), patient);
+    return this.http.put((this._url+patient.id)+"/", patient);
   }
+
+
+  addRecording(patient) {
+
+    return this.http.put(this._url+patient.id+"/",patient);
+
+
+  }
+
+
+
+
+
+
+
+
+
 
   /**
    * sorts the names first by last name
