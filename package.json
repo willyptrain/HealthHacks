@@ -21,9 +21,11 @@
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
     "@kamiazya/ngx-speech-recognition": "^0.4.3",
+    "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
     "google-translate": "^3.0.0",
     "jspdf": "^1.5.3",
+    "ngx-bootstrap": "^5.2.0",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"

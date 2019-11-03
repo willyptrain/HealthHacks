@@ -55,6 +55,7 @@ export class TranslationService {
   constructor(private _http: HttpClient) {}
 
   translateText(lang1, lang2){
+    console.log(lang2);
     let langCode1 = this.getLanguageCode(lang1);
     let langCode2 = this.getLanguageCode(lang2);
     let myGoogleObj = new GoogleObj();

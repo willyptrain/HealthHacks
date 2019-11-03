@@ -17,6 +17,15 @@
       "DOB": "11011999",
       "doctorAssigned": "Dr. Johnsson",
       "allergies": ""
+    },
+    {
+      "id": 4,
+      "firstName": "Qualan",
+      "lastName": "Woodard",
+      "visits": "",
+      "DOB": "",
+      "doctorAssigned": "",
+      "allergies": ""
     }
   ]
 }

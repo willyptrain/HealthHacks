@@ -282,7 +282,7 @@
 .record-button {
   position: absolute;
   top: 94%;
-  left: 56%;
+  left: 64%;
   border: 2px solid;
   height: 30px;
   background: white;
@@ -364,7 +364,12 @@
   font-weight: bolder;
   border: 2px solid white;
 }
-
+.dropdown {
+  position: absolute;
+  top: 83%;
+  left: 67%;
+  height: 40px;
+}
 
 
 

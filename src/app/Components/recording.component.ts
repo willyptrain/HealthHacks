@@ -35,7 +35,7 @@ export class RecordingComponent {
   id;
   patient;
   patientService;
-  recognition;
+  language;
   message;
   speechService;
   stillListening;
@@ -60,15 +60,15 @@ export class RecordingComponent {
         this.updatePatient(patient);
       })
     }
+    this.translation = "Spanish";
   }
 
   updatePatient(patient) {
     this.patient = patient;
   }
 
-  stopRec() {
-
-
+  changeLanguage(language) {
+    this.language = language;
   }
 
   saveToPDF(text) {
@@ -86,14 +86,15 @@ export class RecordingComponent {
     let patientDOB = this.patient.DOB;
     let doctor = this.patient.doctorAssigned;
     let width = doc.internal.pageSize.width;
-//doc.text('Patient Meeting on ' + date, 10, 10 + lineHeight* 0 + offsetY, null, null, "center");
     doc.text(width*.25, 10 + lineHeight * 0 + offsetY, 'Patient Meeting on ' + date);
     doc.text(10, 10 + lineHeight * 2 + offsetY, "Name: " + patientName + "\n");
     doc.text(10, 10 + lineHeight * 3 + offsetY, "Date of birth: " + patientDOB + "\n");
     doc.text(10, 10 + lineHeight * 4 + offsetY, "Doctor: " + doctor + "\n");
     doc.text(10, 10 + lineHeight * 7 + offsetY, 'Translation of Report:');
-    doc.text(10, 10 + lineHeight * 9 + offsetY, text); // typescript compile time error
+    let splitTS = doc.splitTextToSize(text, 180);
+    doc.text(10, 10 + lineHeight * 9 + offsetY, splitTS); // typescript compile time error
     doc.save(patientName + " " + date + ".pdf");
+    this.addRecord();
     this.addRecord();
   }
 
@@ -120,7 +121,7 @@ export class RecordingComponent {
   }
   translate() {
     this.translationService.setInitialText(this.message);
-    this.translationService.translateText("English","Spanish").subscribe(val => {
+    this.translationService.translateText("English",this.language).subscribe(val => {
       // this.translation = val.data.translations[0].translatedText;
       if(val.data.translations) {
         this.saveToPDF(val.data.translations[0].translatedText);
