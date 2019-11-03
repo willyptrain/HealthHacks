@@ -8,6 +8,15 @@
       "DOB": "1108",
       "doctorAssigned": "William",
       "allergies": "None"
+    },
+    {
+      "id": 3,
+      "firstName": "Camila",
+      "lastName": "H",
+      "visits": "",
+      "DOB": "11011999",
+      "doctorAssigned": "Dr. Johnsson",
+      "allergies": ""
     }
   ]
 }

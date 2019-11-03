@@ -42,13 +42,13 @@ export class TranslationService {
 //Returns Language Code for a given string. Accepted strings: English, Spanish, French
   getLanguageCode(language){
     if(language == "English"){
-      return "en";
+      return 'en';
     }
     if(language == "Spanish"){
-      return "es";
+      return 'es';
     }
     else{
-      return "fr";
+      return 'fr';
     }
   }
 
@@ -58,8 +58,8 @@ export class TranslationService {
     let langCode1 = this.getLanguageCode(lang1);
     let langCode2 = this.getLanguageCode(lang2);
     let myGoogleObj = new GoogleObj();
-    myGoogleObj.source = "en";
-    myGoogleObj.target = "es";
+    myGoogleObj.source = langCode1;
+    myGoogleObj.target = langCode2;
     myGoogleObj.q = this.initialText;
     if(myGoogleObj.source && myGoogleObj.target && myGoogleObj.q) {
       let key = "AIzaSyBfxUHvG5D1YI4ehvEZHYnH47zoyQS_yIc";

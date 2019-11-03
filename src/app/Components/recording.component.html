@@ -3,5 +3,5 @@
   <button class="mic-button" (click)="start()" style="font-size:24px"><i class="fa fa-microphone mic"></i></button>
   <textarea [(ngModel)]="message" class="textbox-message">{{this.message}}</textarea>
   <button *ngIf="message && !stillListening" class="translate btn btn-primary" (click)="translate()">Translate</button>
-
+  <button *ngIf="translation && message" (click)="playAudio()" class="btn btn-danger play-audio">Play Audio</button>
 </div>

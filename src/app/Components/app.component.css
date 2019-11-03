@@ -327,7 +327,7 @@
   border-radius: 95%;
   opacity: 0.99;
   position: absolute;
-  top: 30%;
+  top: 15%;
   left: 45%;
 }
 .mic {
@@ -342,19 +342,27 @@
 
 .textbox-message {
   position: absolute;
-  top: 60%;
+  top: 45%;
   left: 36%;
   width: 400px;
-  height: 175px;
+  height: 225px;
   overflow: scroll;
 }
 .translate {
   border: 2.2px solid;
   font-weight: bold;
   position: absolute;
-  top: 88%;
+  top: 83%;
   left: 36%;
   width: 400px;
+}
+.play-audio {
+  position: absolute;
+  top: 90%;
+  left: 36%;
+  width: 400px;
+  font-weight: bolder;
+  border: 2px solid white;
 }
 
 

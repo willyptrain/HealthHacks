@@ -74,8 +74,26 @@ export class RecordingComponent {
   saveToPDF(text) {
     this.translation = text;
     let doc = new jsPDF();
-    doc.text(text, 10, 10); // typescript compile time error
-    doc.save('table.pdf');
+    doc.setFont("Courier");
+    var fontSize = 16;
+    var offsetY = 5;
+    var lineHeight = 6.49111111111111;
+
+    doc.setFontSize(fontSize);
+    let now = new Date();
+    let date = this.datePipe.transform(now, "dd-MM-yyyy");
+    let patientName = this.patient.firstName + " " + this.patient.lastName;
+    let patientDOB = this.patient.DOB;
+    let doctor = this.patient.doctorAssigned;
+    let width = doc.internal.pageSize.width;
+//doc.text('Patient Meeting on ' + date, 10, 10 + lineHeight* 0 + offsetY, null, null, "center");
+    doc.text(width*.25, 10 + lineHeight * 0 + offsetY, 'Patient Meeting on ' + date);
+    doc.text(10, 10 + lineHeight * 2 + offsetY, "Name: " + patientName + "\n");
+    doc.text(10, 10 + lineHeight * 3 + offsetY, "Date of birth: " + patientDOB + "\n");
+    doc.text(10, 10 + lineHeight * 4 + offsetY, "Doctor: " + doctor + "\n");
+    doc.text(10, 10 + lineHeight * 7 + offsetY, 'Translation of Report:');
+    doc.text(10, 10 + lineHeight * 9 + offsetY, text); // typescript compile time error
+    doc.save(patientName + " " + date + ".pdf");
     this.addRecord();
   }
 
@@ -87,7 +105,10 @@ export class RecordingComponent {
         "text":this.translation,
         "date":date
       }
-      this.patient.recordings.push(translationObj);
+      console.log(this.patient.recordings);
+      if(this.patient.recordings) {
+        this.patient.recordings.push(translationObj);
+      }
       this.patientService.addRecording(this.patient).subscribe(val => {
         console.log("success");
       });
@@ -119,6 +140,19 @@ export class RecordingComponent {
       console.log(this.message);
     }
   }
+
+
+  playAudio(){
+    if(this.translation) {
+      console.log(this.translation);
+      var msg = new SpeechSynthesisUtterance(this.translation);
+      msg.lang = "fr";
+      window.speechSynthesis.speak(msg);
+    }
+  }
+
+
+
 
 
 
