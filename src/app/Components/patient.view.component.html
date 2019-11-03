@@ -1,10 +1,10 @@
 <div class="view-page">
   <div class="fullName-container" *ngIf="!inEdit && !inCreate && selectedPatient">
     <div class="firstName-container">
-      <h2 class="firstName">{{selectedPatient.firstName}}</h2>
+      <h1 class="firstName">{{selectedPatient.firstName}}</h1>
     </div>
     <div class="lastName-container">
-      <h2 class="lastName">{{selectedPatient.lastName}}</h2>
+      <h1 class="lastName">{{selectedPatient.lastName}}</h1>
     </div>
   </div>
   <div *ngIf="!inEdit && !inCreate && selectedPatient" patient-container>
@@ -14,7 +14,7 @@
       <hr class="DOB-horizontal">
     </div>
     <div class="field-container doctorAssigned">
-      <p class="doctorAssigned-tag">doctorAssigned</p>
+      <p class="doctorAssigned-tag">Doctor Assigned:</p>
       <p class="doctorAssigned-info-loaded">{{selectedPatient.doctorAssigned}}</p>
       <hr class="doctorAssigned-horizontal">
     </div>
@@ -51,7 +51,7 @@
         <hr class="DOB-horizontal">
       </div>
       <div class="field-container doctorAssigned">
-        <p class="doctorAssigned-tag">doctorAssigned</p>
+        <p class="doctorAssigned-tag">Doctor Assigned:</p>
         <input *ngIf="selectedPatient" [(ngModel)]="doctorAssigned" class="doctorAssigned-info" placeholder="{{selectedPatient.doctorAssigned}}">
         <input *ngIf="!selectedPatient" [(ngModel)]="doctorAssigned" class="doctorAssigned-info" placeholder="">
         <hr class="doctorAssigned-horizontal">

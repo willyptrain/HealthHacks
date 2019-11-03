@@ -1,20 +1,13 @@
 {
   "patients": [
     {
-      "id": 1,
+      "id": 2,
       "firstName": "Will",
-      "lastName": "Peter",
-      "visits": "new visit",
-      "DOB": "123123123",
-      "doctorAssigned": "email",
-      "allergies": "",
-      "recordings": [
-        "Hola",
-        {
-          "text": "Hola",
-          "date": "02-11-2019"
-        }
-      ]
+      "lastName": "Peterson",
+      "visits": "Never",
+      "DOB": "1108",
+      "doctorAssigned": "William",
+      "allergies": "None"
     }
   ]
 }

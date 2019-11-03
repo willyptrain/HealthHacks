@@ -5,7 +5,7 @@
     <hr *ngIf="patientList[character].length > 0" class="patientBucketSeparator">
     <p [ngClass]="patient.colorBlue ? 'list-patient-name blue' : 'list-patient-name'" (click)="selectPatient(patient, i)" *ngFor="let patient of patientList[character]; let i=index" ngDefaultControl>&nbsp;&nbsp;&nbsp;&nbsp;{{patient.firstName}} {{patient.lastName}}
       <button [hidden]="!patient.colorBlue || !inEdit" class="delete-button" (click)="removePatient(patient)">
-        <b>-</b>
+        <b class="exit-tag">x</b>
       </button>
     </p>
 

@@ -67,19 +67,6 @@ export class RecordingComponent {
   }
 
   stopRec() {
-    this.stillListening = false;
-    this.speechService.stop();
-    console.log(this.message);
-    this.translationService.setInitialText(this.message);
-    this.translationService.translateText("English","Spanish").subscribe(val => {
-      // this.translation = val.data.translations[0].translatedText;
-      if(val.data.translations) {
-        this.saveToPDF(val.data.translations[0].translatedText);
-      }
-    }, error => {
-      console.log(error);
-    });
-
 
 
   }
@@ -95,7 +82,7 @@ export class RecordingComponent {
   addRecord() {
     if(this.patient) {
       let now = new Date();
-      let date = this.datePipe.transform(now, "dd-MM-yyyy");
+      let date = this.datePipe.transform(now, "ddMMyyyy");
       let translationObj = {
         "text":this.translation,
         "date":date
@@ -107,12 +94,30 @@ export class RecordingComponent {
 
     }
   }
+  toggleListen() {
+    this.stillListening = !this.stillListening;
+  }
+  translate() {
+    this.translationService.setInitialText(this.message);
+    this.translationService.translateText("English","Spanish").subscribe(val => {
+      // this.translation = val.data.translations[0].translatedText;
+      if(val.data.translations) {
+        this.saveToPDF(val.data.translations[0].translatedText);
+      }
+    }, error => {
+      console.log(error);
+    });
+  }
 
   start() {
-    this.speechService.continuous = true;
-    this.stillListening = true;
-    this.speechService.start();
-
+    this.toggleListen();
+    if(this.stillListening) {
+      this.speechService.continuous = true;
+      this.speechService.start();
+    } else {
+      this.speechService.stop();
+      console.log(this.message);
+    }
   }
 
 

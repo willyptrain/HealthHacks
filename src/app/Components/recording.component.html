@@ -1,4 +1,7 @@
-<h2 *ngIf="patient">Creating Recording for Patient: {{patient.firstName}} {{patient.lastName}}</h2>
-<button class="mic-button" (click)="start()" style="font-size:24px"><i class="fa fa-microphone mic"></i></button>
-<button *ngIf="stillListening" class="stop-record btn btn-outline-danger" (click)="stopRec()">Stop Recording</button>
-<h2 *ngIf="translation">{{this.translation}}</h2>
+<div class="recording-container">
+  <h2 *ngIf="patient" class="patient-header"><u>Patient:</u> {{patient.firstName}} {{patient.lastName}}</h2>
+  <button class="mic-button" (click)="start()" style="font-size:24px"><i class="fa fa-microphone mic"></i></button>
+  <textarea [(ngModel)]="message" class="textbox-message">{{this.message}}</textarea>
+  <button *ngIf="message && !stillListening" class="translate btn btn-primary" (click)="translate()">Translate</button>
+
+</div>
