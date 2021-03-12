@@ -24,7 +24,7 @@
     "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
     "google-translate": "^3.0.0",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.3.1",
     "ngx-bootstrap": "^5.2.0",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
